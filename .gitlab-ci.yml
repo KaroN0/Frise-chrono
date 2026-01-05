@@ -1,0 +1,16 @@
+image: busybox
+
+# Configuration pour GitLab Pages - Ce fichier remplace les réglages Auto DevOps
+# Il garantit que le projet est traité comme un site statique simple.
+
+pages:
+  stage: deploy
+  script:
+    - mkdir .public
+    - cp -r * .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
